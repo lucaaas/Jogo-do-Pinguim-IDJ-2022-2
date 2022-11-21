@@ -5,15 +5,15 @@
 #include <stdexcept>
 #include <iostream>
 #include "State.h"
-#include "../helpers/AssetService.h"
+#include "../helpers/asset/AssetHelper.h"
 
-State::State(): bg(AssetService::GetAssetPath((char *) "img", "ocean.jpg")) {
+State::State() : bg(AssetHelper::GetAssetPath((char *) "img", "ocean.jpg")) {
     quitRequested = false;
 }
 
 void State::LoadAssets() {
-    bg = Sprite(AssetService::GetAssetPath((char *) "img", "ocean.jpg"));
-    music = Music(AssetService::GetAssetPath((char *) "audio", "stageState.ogg"));
+    bg = Sprite(AssetHelper::GetAssetPath((char *) "img", "ocean.jpg"));
+    music = Music(AssetHelper::GetAssetPath((char *) "audio", "stageState.ogg"));
 }
 
 bool State::QuitRequested() const {

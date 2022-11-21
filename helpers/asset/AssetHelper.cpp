@@ -4,9 +4,9 @@
 
 #include <cstring>
 #include <iostream>
-#include "AssetService.h"
+#include "AssetHelper.h"
 
-char *AssetService::GetAssetPath(char *assetType, const char *file) {
+char *AssetHelper::GetAssetPath(char *assetType, const char *file) {
     char *assetsPath = (char *) "/assets/";
     char fullPath[255] = "";
 

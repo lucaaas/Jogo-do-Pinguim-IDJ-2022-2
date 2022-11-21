@@ -2,14 +2,14 @@
 // Created by lucas on 13/11/22.
 //
 
-#ifndef GAME_ASSETSERVICE_H
-#define GAME_ASSETSERVICE_H
+#ifndef GAME_ASSETHELPER_H
+#define GAME_ASSETHELPER_H
 
 
-class AssetService {
+class AssetHelper {
 public:
     static char *GetAssetPath(char *assetType, const char* file);
 };
 
 
-#endif //GAME_ASSETSERVICE_H
+#endif //GAME_ASSETHELPER_H
