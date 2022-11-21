@@ -3,16 +3,17 @@
 //
 
 #include <stdexcept>
+#include <iostream>
+
 #include "SDL2/SDL_image.h"
 #include "SDL2/SDL_mixer.h"
 
 #include "Game.h"
 
+Game *Game::instance = nullptr;
 
 Game::Game(const char *title, int width, int height) {
     Init();
-
-    state = new State;
 
     window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
     if (window == nullptr) {
@@ -23,6 +24,9 @@ Game::Game(const char *title, int width, int height) {
     if (renderer == nullptr) {
         throw std::runtime_error(strcat("An error occurred on creating renderer: ", SDL_GetError()));
     }
+
+    instance = this;
+    state = new State();
 }
 
 Game::~Game() {
@@ -41,6 +45,7 @@ Game &Game::GetInstance() {
         instance = new Game("Lucas Silva (15/0016018)", 1024, 600);
     }
 
+    std::cout << "created\n";
     return *instance;
 }
 

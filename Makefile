@@ -78,6 +78,7 @@ run:
 clean:
 	$(RMDIR) $(BIN_PATH) $(DEP_PATH)
 	$(RM) $(EXEC)
+	$(RM) *.o
 
 .PRECIOUS: $(DEP_PATH)/%.D
 

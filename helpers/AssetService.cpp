@@ -3,14 +3,17 @@
 //
 
 #include <cstring>
+#include <iostream>
 #include "AssetService.h"
 
 char *AssetService::GetAssetPath(char *assetType, const char *file) {
-    char *path = (char *) "/assets/";
+    char *assetsPath = (char *) "/assets/";
+    char fullPath[255] = "";
 
-    strcat(assetType, "/");
-    strcat(path, assetType);
-    strcat(path, file);
+    strcat(fullPath, assetsPath);
+    strcat(fullPath, assetType);
+    strcat(fullPath, "/");
+    strcat(fullPath, file);
 
-    return path;
+    return fullPath;
 }

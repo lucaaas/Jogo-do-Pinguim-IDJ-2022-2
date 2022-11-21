@@ -3,12 +3,12 @@
 //
 
 #include <stdexcept>
+#include <iostream>
 #include "State.h"
 #include "../helpers/AssetService.h"
 
-State::State() {
+State::State(): bg(AssetService::GetAssetPath((char *) "img", "ocean.jpg")) {
     quitRequested = false;
-    LoadAssets();
 }
 
 void State::LoadAssets() {
