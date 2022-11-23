@@ -7,9 +7,10 @@
 #include "AssetHelper.h"
 
 char *AssetHelper::GetAssetPath(char *assetType, const char *file) {
-    char *assetsPath = (char *) "/assets/";
-    char fullPath[255] = "";
+    char *assetsPath = (char *) "assets/";
+    char *fullPath = (char *) malloc(sizeof(char) * 255);
 
+    strcpy(fullPath, "");
     strcat(fullPath, assetsPath);
     strcat(fullPath, assetType);
     strcat(fullPath, "/");

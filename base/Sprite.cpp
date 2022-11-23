@@ -38,7 +38,7 @@ void Sprite::Open(char *file) {
 
     texture = IMG_LoadTexture(GetRenderer(), file);
     if (texture == nullptr) {
-        throw std::runtime_error(strcat("An error occurred on loading texture: ", SDL_GetError()));
+        throw std::runtime_error(strcat((char *) "An error occurred on loading texture: ", SDL_GetError()));
     }
 
     int result_query = SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
