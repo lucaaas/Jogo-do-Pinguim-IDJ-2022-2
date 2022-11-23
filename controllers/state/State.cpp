@@ -3,9 +3,8 @@
 //
 
 #include <stdexcept>
-#include <iostream>
 #include "State.h"
-#include "../helpers/asset/AssetHelper.h"
+#include "../../helpers/asset/AssetHelper.h"
 
 State::State() : bg(AssetHelper::GetAssetPath((char *) "img", "ocean.jpg")) {
     quitRequested = false;

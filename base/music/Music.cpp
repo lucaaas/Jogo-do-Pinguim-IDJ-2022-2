@@ -2,8 +2,8 @@
 // Created by lucas on 13/11/22.
 //
 
-#include <stdexcept>
 #include "Music.h"
+#include "../../types/exceptions/Exception.h"
 
 Music::Music() {
     music = nullptr;
@@ -37,7 +37,8 @@ void Music::Open(const char *file) {
 
     music = Mix_LoadMUS(file);
     if (music == nullptr) {
-        throw std::runtime_error(strcat("An error occurred on loading texture: ", SDL_GetError()));
+        std::string error = "An error occurred on loading music: ";
+        throw Exception(error + SDL_GetError());
     }
 }
 

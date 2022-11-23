@@ -6,8 +6,8 @@
 #define GAME_STATE_H
 
 #include "SDL2/SDL.h"
-#include "../base/Sprite.h"
-#include "../base/Music.h"
+#include "../../base/sprite/Sprite.h"
+#include "../../base/music/Music.h"
 
 class State {
 private:

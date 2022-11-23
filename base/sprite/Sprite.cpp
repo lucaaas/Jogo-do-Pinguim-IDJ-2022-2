@@ -2,13 +2,11 @@
 // Created by lucas on 13/11/22.
 //
 
-
-#include <stdexcept>
-#include <iostream>
 #include "SDL2/SDL_image.h"
-#include "../controllers/Game.h"
 
+#include "../../controllers/game/Game.h"
 #include "Sprite.h"
+#include "../../types/exceptions/Exception.h"
 
 Sprite::Sprite() {
     texture = nullptr;
@@ -38,12 +36,14 @@ void Sprite::Open(char *file) {
 
     texture = IMG_LoadTexture(GetRenderer(), file);
     if (texture == nullptr) {
-        throw std::runtime_error(strcat((char *) "An error occurred on loading texture: ", SDL_GetError()));
+        std::string error = "An error occurred on loading texture: ";
+        throw Exception(error + SDL_GetError());
     }
 
     int result_query = SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
     if (result_query != 0) {
-        throw std::runtime_error(strcat("An error occurred on querying texture: ", SDL_GetError()));
+        std::string error = "An error occurred on querying texture: ";
+        throw Exception(error + SDL_GetError());
     }
 
     SetClip(0, 0, width, height);

@@ -1,7 +1,6 @@
-#include <iostream>
-#include "controllers/Game.h"
+#include "controllers/game/Game.h"
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
     Game game = Game::GetInstance();
     game.Run();
 

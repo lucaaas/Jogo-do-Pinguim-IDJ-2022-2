@@ -6,7 +6,7 @@
 #define GAME_GAME_H
 
 #include "SDL2/SDL.h"
-#include "State.h"
+#include "../state/State.h"
 
 class Game {
 private:
@@ -18,7 +18,9 @@ private:
 
     Game(const char *title, int width, int height);
 
-    void Init();
+    void CreateWindow(const char *title, int width, int height);
+
+    void CreateRenderer();
 
     void InitSdl() const;
 

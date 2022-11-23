@@ -8,7 +8,7 @@
 
 class AssetHelper {
 public:
-    static char *GetAssetPath(char *assetType, const char* file);
+    static char *GetAssetPath(char *assetType, const char *file);
 };
 
 
