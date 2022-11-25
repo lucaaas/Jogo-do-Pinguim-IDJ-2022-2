@@ -12,7 +12,7 @@
 
 Game *Game::instance = nullptr;
 
-Game::Game(const char *title, int width, int height) {
+Game::Game(const std::string title, int width, int height) {
     InitSdl();
     InitImage();
     InitAudio();
@@ -65,8 +65,8 @@ void Game::Run() {
     }
 }
 
-void Game::CreateWindow(const char *title, int width, int height) {
-    window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
+void Game::CreateWindow(const std::string title, int width, int height) {
+    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
     if (window == nullptr) {
         std::string error = "An error occurred on creating window: ";
         throw Exception(error + SDL_GetError());

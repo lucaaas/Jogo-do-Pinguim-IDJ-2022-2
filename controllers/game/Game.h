@@ -16,9 +16,9 @@ private:
     SDL_Renderer *renderer;
     State *state;
 
-    Game(const char *title, int width, int height);
+    Game(std::string title, int width, int height);
 
-    void CreateWindow(const char *title, int width, int height);
+    void CreateWindow(std::string title, int width, int height);
 
     void CreateRenderer();
 
@@ -29,14 +29,33 @@ private:
     void InitAudio() const;
 
 public:
+    /**
+     * Deletes the State, stops musics, removes the images and closes the window
+     */
     ~Game();
 
+    /**
+     * Gets or creates the instance of Game
+     * @return a instance of Game
+     */
     static Game &GetInstance();
 
+    /**
+     *
+     * @return the Renderer
+     */
     SDL_Renderer *GetRenderer();
 
+
+    /**
+     *
+     * @return the current State
+     */
     State &GetState();
 
+    /**
+     * Inits the game and control what render, handle input and maintain the current state
+     */
     void Run();
 };
 

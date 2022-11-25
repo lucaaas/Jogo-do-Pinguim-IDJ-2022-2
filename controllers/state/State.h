@@ -16,14 +16,30 @@ private:
     bool quitRequested;
 
 public:
+    /**
+     * Initializes this
+     */
     State();
 
+    /**
+     * @return true if quit was requested
+     */
     bool QuitRequested() const;
 
+    /**
+     * Preloads the assets that will be used
+     */
     void LoadAssets();
 
+    /**
+     * Updates the different entities state
+     * @param dt
+     */
     void Update(float dt);
 
+    /**
+     * Renders the entities (scenarios, HDU etc)
+     */
     void Render();
 };
 

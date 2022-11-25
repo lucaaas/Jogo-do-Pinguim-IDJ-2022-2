@@ -6,17 +6,17 @@
 #include "State.h"
 #include "../../helpers/asset/AssetHelper.h"
 
-State::State() : bg(AssetHelper::GetAssetPath((char *) "img", "ocean.jpg")),
-                 music(AssetHelper::GetAssetPath((char *) "audio", "stageState.ogg")) {
+State::State() : bg(AssetHelper::GetAssetPath("img", "ocean.jpg")),
+                 music(AssetHelper::GetAssetPath("audio", "stageState.ogg")) {
     quitRequested = false;
 
     music.Play();
 }
 
 void State::LoadAssets() {
-    bg = Sprite(AssetHelper::GetAssetPath((char *) "img", "ocean.jpg"));
+    bg = Sprite(AssetHelper::GetAssetPath("img", "ocean.jpg"));
 
-    music = Music(AssetHelper::GetAssetPath((char *) "audio", "stageState.ogg"));
+    music = Music(AssetHelper::GetAssetPath("audio", "stageState.ogg"));
     music.Play();
 }
 

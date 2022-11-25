@@ -12,7 +12,7 @@ Sprite::Sprite() {
     texture = nullptr;
 }
 
-Sprite::Sprite(char *file) {
+Sprite::Sprite(std::string file) {
     texture = nullptr;
     Open(file);
 }
@@ -21,20 +21,16 @@ Sprite::~Sprite() {
     DestroyTexture();
 }
 
-void Sprite::DestroyTexture() {
-    SDL_DestroyTexture(texture);
-}
-
 SDL_Renderer *Sprite::GetRenderer() {
     return Game::GetInstance().GetRenderer();
 }
 
-void Sprite::Open(char *file) {
+void Sprite::Open(std::string file) {
     if (texture != nullptr) {
         DestroyTexture();
     }
 
-    texture = IMG_LoadTexture(GetRenderer(), file);
+    texture = IMG_LoadTexture(GetRenderer(), file.c_str());
     if (texture == nullptr) {
         std::string error = "An error occurred on loading texture: ";
         throw Exception(error + SDL_GetError());
@@ -80,5 +76,7 @@ bool Sprite::IsOpen() {
     return texture != nullptr;
 }
 
-
+void Sprite::DestroyTexture() {
+    SDL_DestroyTexture(texture);
+}
 

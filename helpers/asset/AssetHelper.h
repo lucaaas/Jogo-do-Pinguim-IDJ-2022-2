@@ -8,7 +8,14 @@
 
 class AssetHelper {
 public:
-    static char *GetAssetPath(char *assetType, const char *file);
+
+    /**
+     * Gets the path to the asset
+     * @param assetType type of the asset. Can be audio, img, font or map
+     * @param file name of the file
+     * @return complete path to the asset
+     */
+    static std::string GetAssetPath(char *assetType, const char *file);
 };
 
 
