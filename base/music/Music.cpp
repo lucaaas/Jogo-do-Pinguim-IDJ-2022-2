@@ -3,7 +3,7 @@
 //
 
 #include "Music.h"
-#include "../../types/exceptions/Exception.h"
+#include "../../types/exceptions/exception/Exception.h"
 
 Music::Music() {
     music = nullptr;

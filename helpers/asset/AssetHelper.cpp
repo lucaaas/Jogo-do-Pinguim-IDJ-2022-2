@@ -5,7 +5,7 @@
 #include <iostream>
 #include "AssetHelper.h"
 
-std::string AssetHelper::GetAssetPath(char *assetType, const char *file) {
+std::string AssetHelper::GetAssetPath(std::string assetType, std::string file) {
     std::string assetsPath = "assets/";
     return assetsPath + assetType + "/" + file;
 }

@@ -6,13 +6,14 @@
 
 #include "../../controllers/game/Game.h"
 #include "Sprite.h"
-#include "../../types/exceptions/Exception.h"
+#include "../../types/exceptions/exception/Exception.h"
+#include "../../types/exceptions/methodNotImplemented/MethodNotImplementedException.h"
 
-Sprite::Sprite() {
+Sprite::Sprite(GameObject &associated): Component(associated) {
     texture = nullptr;
 }
 
-Sprite::Sprite(std::string file) {
+Sprite::Sprite(GameObject &associated, std::string file) : Component(associated) {
     texture = nullptr;
     Open(file);
 }
@@ -54,21 +55,21 @@ void Sprite::SetClip(int x, int y, int w, int h) {
 }
 
 
-void Sprite::Render(int x, int y) {
+void Sprite::Render() {
     SDL_Rect destinyRect = SDL_Rect();
-    destinyRect.x = x;
-    destinyRect.y = y;
+    destinyRect.x = (int) associated.box.getX();
+    destinyRect.y = (int) associated.box.getY();
     destinyRect.w = clipRect.w;
     destinyRect.h = clipRect.h;
 
     SDL_RenderCopy(GetRenderer(), texture, &clipRect, &destinyRect);
 }
 
-int Sprite::GetWidth() {
+int Sprite::GetWidth() const {
     return width;
 }
 
-int Sprite::GetHeight() {
+int Sprite::GetHeight() const {
     return height;
 }
 
@@ -78,5 +79,13 @@ bool Sprite::IsOpen() {
 
 void Sprite::DestroyTexture() {
     SDL_DestroyTexture(texture);
+}
+
+void Sprite::Update(float dt) {
+    // do nothing
+}
+
+bool Sprite::Is(std::string type) {
+    return type == "Sprite";
 }
 

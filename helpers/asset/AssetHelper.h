@@ -15,7 +15,7 @@ public:
      * @param file name of the file
      * @return complete path to the asset
      */
-    static std::string GetAssetPath(char *assetType, const char *file);
+    static std::string GetAssetPath(std::string assetType, std::string file);
 };
 
 

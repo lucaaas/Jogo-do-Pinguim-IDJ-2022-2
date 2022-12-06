@@ -7,8 +7,9 @@
 
 #include <string>
 #include "SDL2/SDL.h"
+#include "../component/Component.h"
 
-class Sprite {
+class Sprite : public Component {
 private:
     SDL_Texture *texture;
     SDL_Rect clipRect;
@@ -23,20 +24,21 @@ public:
     /**
      * Simple initializes members as nullptr
      */
-    Sprite();
+    explicit Sprite(GameObject &associated);
 
     /***
      * Open an image file
      *
-     * @param file: char*: image to be opened
+     * @param file: image to be opened
+     * @param associated: GameObject associated to this
      */
-    explicit Sprite(std::string file);
+    Sprite(GameObject &associated, std::string file);
 
 
     /**
      * Frees memory
      */
-    ~Sprite();
+    ~Sprite() override;
 
     /**
      * Opens an image file
@@ -58,28 +60,30 @@ public:
 
     /**
      * Renders the image on the coordinates x and y
-     * @param x
-     * @param y
      */
-    void Render(int x, int y);
+    void Render();
 
     /**
      *
      * @return image width
      */
-    int GetWidth();
+    int GetWidth() const;
 
     /**
      *
      * @return image height
      */
-    int GetHeight();
+    int GetHeight() const;
 
     /**
      * Checks if the file is open
      * @return true if it is open
      */
     bool IsOpen();
+
+    void Update(float dt) override;
+
+    bool Is(std::string type) override;
 };
 
 

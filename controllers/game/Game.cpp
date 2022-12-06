@@ -8,7 +8,7 @@
 #include "SDL2/SDL_mixer.h"
 
 #include "Game.h"
-#include "../../types/exceptions/Exception.h"
+#include "../../types/exceptions/exception/Exception.h"
 
 Game *Game::instance = nullptr;
 
@@ -54,6 +54,7 @@ State &Game::GetState() {
 void Game::Run() {
     while (!state->QuitRequested()) {
         try {
+            SDL_RenderClear(renderer);
             state->Update(0.0);
             state->Render();
 
