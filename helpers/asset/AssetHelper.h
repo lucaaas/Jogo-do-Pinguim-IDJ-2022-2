@@ -5,6 +5,7 @@
 #ifndef GAME_ASSETHELPER_H
 #define GAME_ASSETHELPER_H
 
+using namespace std;
 
 class AssetHelper {
 public:
@@ -15,7 +16,9 @@ public:
      * @param file name of the file
      * @return complete path to the asset
      */
-    static std::string GetAssetPath(std::string assetType, std::string file);
+    static string GetAssetPath(const string &assetType, const string &file);
+
+    static ifstream OpenAsset(const string &assetType, const string &fileName);
 };
 
 

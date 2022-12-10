@@ -9,7 +9,7 @@
 #include "../../types/exceptions/exception/Exception.h"
 #include "../../types/exceptions/methodNotImplemented/MethodNotImplementedException.h"
 
-Sprite::Sprite(GameObject &associated): Component(associated) {
+Sprite::Sprite(GameObject &associated) : Component(associated) {
     texture = nullptr;
 }
 
@@ -56,9 +56,13 @@ void Sprite::SetClip(int x, int y, int w, int h) {
 
 
 void Sprite::Render() {
+    Render((int) associated.box.getX(), (int) associated.box.getY());
+}
+
+void Sprite::Render(int x, int y) {
     SDL_Rect destinyRect = SDL_Rect();
-    destinyRect.x = (int) associated.box.getX();
-    destinyRect.y = (int) associated.box.getY();
+    destinyRect.x = x;
+    destinyRect.y = y;
     destinyRect.w = clipRect.w;
     destinyRect.h = clipRect.h;
 

@@ -2,7 +2,6 @@
 // Created by lucas on 13/11/22.
 //
 
-#include <stdexcept>
 #include "State.h"
 #include "../../helpers/asset/AssetHelper.h"
 #include "../../mechanics/Face.h"
@@ -10,6 +9,7 @@
 #include "../../types/consts/Consts.h"
 #include "../../types/exceptions/exception/Exception.h"
 #include "../game/Game.h"
+#include "../../base/TileMap.h"
 
 GameObject backgroundGO = GameObject();
 
@@ -19,6 +19,8 @@ State::State() : music(AssetHelper::GetAssetPath("audio", "stageState.ogg")),
 
     bg.Render();
     music.Play();
+
+    AddMap();
 
     AddObject(0, 0);
 }
@@ -78,6 +80,17 @@ void State::Update(float dt) {
     } catch (std::exception &err) {
         printf("%s \n", err.what());
     }
+}
+
+void State::AddMap() {
+    GameObject *mapObject = new GameObject();
+    mapObject->box = Rect(0, 0, 64, 64);
+
+    TileSet tiles = TileSet(64, 64, AssetHelper::GetAssetPath("img", "tileset.png"));
+    TileMap *map = new TileMap(*mapObject, "tileMap.txt", &tiles);
+
+    mapObject->AddComponent(map);
+    objectArray.emplace_back(mapObject);
 }
 
 void State::Input() {

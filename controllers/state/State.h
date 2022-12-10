@@ -17,6 +17,8 @@ private:
     bool quitRequested;
     std::vector<std::unique_ptr<GameObject>> objectArray;
 
+    void AddMap();
+
 public:
     /**
      * Initializes this

@@ -84,6 +84,8 @@ public:
     void Update(float dt) override;
 
     bool Is(std::string type) override;
+
+    void Render(int x, int y);
 };
 
 
