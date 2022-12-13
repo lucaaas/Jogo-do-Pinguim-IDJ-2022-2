@@ -18,28 +18,28 @@ using namespace std;
 
 class Resources {
 private:
-    unordered_map<string, SDL_Texture *> imageTable;
-    unordered_map<string, Mix_Music *> musicTable;
-    unordered_map<string, Mix_Chunk *> soundTable;
+    static unordered_map<string, SDL_Texture *> imageTable;
+    static unordered_map<string, Mix_Music *> musicTable;
+    static unordered_map<string, Mix_Chunk *> soundTable;
 
-    SDL_Texture *LoadImage(const string &file);
+    static SDL_Texture *LoadImage(const string &file);
+
+    static Mix_Music *LoadMusic(const string &file);
+
+    static Mix_Chunk *LoadSound(const string &file);
 
 public:
-    SDL_Texture *GetImage(const string &file);
+    static SDL_Texture *GetImage(const string &file);
 
-    void ClearImage();
+    static void ClearImage();
 
-    Mix_Music *GetMusic(string file);
+    static Mix_Music *GetMusic(string file);
 
-    void ClearMusics();
+    static void ClearMusics();
 
-    Mix_Chunk *GetSound(string file);
+    static Mix_Chunk *GetSound(string file);
 
-    void ClearSounds();
-
-    Mix_Music *LoadMusic(const string &file);
-
-    Mix_Chunk * LoadSound(const string &file);
+    static void ClearSounds();
 };
 
 
