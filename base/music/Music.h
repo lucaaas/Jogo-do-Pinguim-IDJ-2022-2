@@ -16,8 +16,6 @@ class Music {
 private:
     Mix_Music *music;
 
-    void DestroyMusic();
-
 public:
     /***
      * Simple constructor that initializes all members as nullptr
@@ -32,7 +30,7 @@ public:
     explicit Music(std::string file);
 
     /**
-     * Calls `Stop()` and frees memory
+     * Calls `Stop()`
      */
     ~Music();
 

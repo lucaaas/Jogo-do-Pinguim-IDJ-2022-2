@@ -5,6 +5,7 @@
 #include "Sound.h"
 #include "../../types/exceptions/exception/Exception.h"
 #include "../../types/exceptions/methodNotImplemented/MethodNotImplementedException.h"
+#include "../resources/Resources.h"
 
 Sound::Sound(GameObject &associated) : Component(associated) {
     chunk = nullptr;
@@ -17,7 +18,6 @@ Sound::Sound(GameObject &associated, const std::string &file) : Sound(associated
 Sound::~Sound() {
     if (chunk != nullptr) {
         Stop();
-        Mix_FreeChunk(chunk);
     }
 }
 
@@ -31,11 +31,11 @@ void Sound::Stop() {
     }
 }
 
-void Sound::Open(const std::string& file) {
-    chunk = Mix_LoadWAV(file.c_str());
-    if (chunk == nullptr) {
-        std::string error = "An error occurred on loading music: ";
-        throw Exception(error + SDL_GetError());
+void Sound::Open(const std::string &file) {
+    try {
+        chunk = Resources::GetSound(file.c_str());
+    } catch (Exception &e) {
+        e.Show();
     }
 }
 

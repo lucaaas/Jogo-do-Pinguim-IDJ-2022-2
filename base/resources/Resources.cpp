@@ -4,6 +4,10 @@
 
 #include "Resources.h"
 
+unordered_map<string, SDL_Texture *> Resources::imageTable = {};
+unordered_map<string, Mix_Music *> Resources::musicTable = {};
+unordered_map<string, Mix_Chunk *> Resources::soundTable = {};
+
 SDL_Texture *Resources::GetImage(const string &file) {
     unordered_map<string, SDL_Texture *>::const_iterator sprite = imageTable.find(file);
     if (sprite != imageTable.end()) {
@@ -12,6 +16,8 @@ SDL_Texture *Resources::GetImage(const string &file) {
         SDL_Texture *newSprite = LoadImage(file);
         pair<string, SDL_Texture *> newSpritePair(file, newSprite);
         imageTable.insert(newSpritePair);
+
+        return newSprite;
     }
 }
 
@@ -20,6 +26,7 @@ void Resources::ClearImage() {
     unordered_map<string, SDL_Texture *>::iterator it;
     for (it = imageTable.begin(); it != imageTable.end(); it++) {
         SDL_Texture *sprite = it->second;
+        SDL_DestroyTexture(sprite);
         delete &sprite;
     }
 }
@@ -32,6 +39,8 @@ Mix_Music *Resources::GetMusic(string file) {
         Mix_Music *newMusic = LoadMusic(file);
         pair<string, Mix_Music *> newMusicPair(file, newMusic);
         musicTable.insert(newMusicPair);
+
+        return newMusic;
     }
 }
 
@@ -39,7 +48,7 @@ void Resources::ClearMusics() {
     unordered_map<string, Mix_Music *>::iterator it;
     for (it = musicTable.begin(); it != musicTable.end(); it++) {
         Mix_Music *music = it->second;
-        delete &music;
+        delete music;
     }
 }
 
@@ -48,20 +57,27 @@ Mix_Chunk *Resources::GetSound(string file) {
     if (sound != soundTable.end()) {
         return sound->second;
     } else {
-        Mix_Chunk *mixChunk = LoadSound(file);
-        pair<string, Mix_Chunk *> newSoundPair(file, mixChunk);
+        Mix_Chunk *newSound = LoadSound(file);
+        pair<string, Mix_Chunk *> newSoundPair(file, newSound);
         soundTable.insert(newSoundPair);
+
+        return newSound;
     }
 }
 
 void Resources::ClearSounds() {
     unordered_map<string, Mix_Chunk *>::iterator it;
     for (it = soundTable.begin(); it != soundTable.end(); it++) {
-        Mix_Chunk *music = it->second;
-        delete &music;
+        Mix_Chunk *sound = it->second;
+        delete sound;
     }
 }
 
+void Resources::ClearAllResources() {
+    ClearSounds();
+    ClearMusics();
+    ClearImage();
+}
 
 SDL_Texture *Resources::LoadImage(const string &file) {
     SDL_Renderer *renderer = Game::GetInstance().GetRenderer();

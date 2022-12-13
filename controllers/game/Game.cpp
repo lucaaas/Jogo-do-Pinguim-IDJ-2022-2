@@ -9,6 +9,7 @@
 
 #include "Game.h"
 #include "../../types/exceptions/exception/Exception.h"
+#include "../../base/resources/Resources.h"
 
 Game *Game::instance = nullptr;
 
@@ -64,6 +65,8 @@ void Game::Run() {
             std::cerr << e.what() << "\n";
         }
     }
+
+    Resources::ClearAllResources();
 }
 
 void Game::CreateWindow(const std::string title, int width, int height) {

@@ -11,3 +11,7 @@ Exception::Exception(std::string message) : message(std::move(message)) {}
 const char *Exception::what() const noexcept {
     return message.c_str();
 }
+
+void Exception::Show() const {
+    printf("%s", what());
+}

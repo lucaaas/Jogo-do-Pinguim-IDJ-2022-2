@@ -15,6 +15,8 @@ private:
 public:
     explicit Exception(std::string message);
 
+    void Show() const;
+
     const char *what() const noexcept override;
 };
 

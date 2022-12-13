@@ -8,6 +8,7 @@
 #include "Sprite.h"
 #include "../../types/exceptions/exception/Exception.h"
 #include "../../types/exceptions/methodNotImplemented/MethodNotImplementedException.h"
+#include "../resources/Resources.h"
 
 Sprite::Sprite(GameObject &associated) : Component(associated) {
     texture = nullptr;
@@ -18,23 +19,19 @@ Sprite::Sprite(GameObject &associated, std::string file) : Component(associated)
     Open(file);
 }
 
-Sprite::~Sprite() {
-    DestroyTexture();
-}
-
 SDL_Renderer *Sprite::GetRenderer() {
     return Game::GetInstance().GetRenderer();
 }
 
 void Sprite::Open(std::string file) {
-    if (texture != nullptr) {
-        DestroyTexture();
-    }
-
-    texture = IMG_LoadTexture(GetRenderer(), file.c_str());
-    if (texture == nullptr) {
-        std::string error = "An error occurred on loading texture: ";
-        throw Exception(error + SDL_GetError());
+    try {
+        texture = Resources::GetImage(file.c_str());
+        if (texture == nullptr) {
+            std::string error = "An error occurred on loading texture: ";
+            throw Exception(error + SDL_GetError());
+        }
+    } catch (Exception &e) {
+        e.Show();
     }
 
     int result_query = SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
@@ -79,10 +76,6 @@ int Sprite::GetHeight() const {
 
 bool Sprite::IsOpen() {
     return texture != nullptr;
-}
-
-void Sprite::DestroyTexture() {
-    SDL_DestroyTexture(texture);
 }
 
 void Sprite::Update(float dt) {

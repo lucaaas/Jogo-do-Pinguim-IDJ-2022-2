@@ -18,8 +18,6 @@ private:
 
     SDL_Renderer *GetRenderer();
 
-    void DestroyTexture();
-
 public:
     /**
      * Simple initializes members as nullptr
@@ -33,12 +31,6 @@ public:
      * @param associated: GameObject associated to this
      */
     Sprite(GameObject &associated, std::string file);
-
-
-    /**
-     * Frees memory
-     */
-    ~Sprite() override;
 
     /**
      * Opens an image file
