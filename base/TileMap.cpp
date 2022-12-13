@@ -18,10 +18,7 @@ void TileMap::Load(const string &fileName) {
     getline(file, line);
     SetDimensions(line);
 
-    printf("setou as dimesions\n");
-
     FillTileMatrix(file);
-    printf("fillou a matrix\n");
     file.close();
 }
 

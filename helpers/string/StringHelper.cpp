@@ -7,7 +7,7 @@
 using namespace std;
 
 std::vector<string> StringHelper::Split(string text, string delimiter) {
-    size_t start = 0, end = 0, delimeterLength = delimiter.length();
+    size_t start = 0, delimeterLength = delimiter.length(), end;
     string token;
     vector<string> stringSplitted;
 
@@ -19,8 +19,6 @@ std::vector<string> StringHelper::Split(string text, string delimiter) {
     }
 
     string lastString = text.substr(start);
-    ::printf("last %d = %s\n", start, lastString.c_str());
-
     if (!lastString.empty()) {
         stringSplitted.push_back(text.substr(start));
     }
