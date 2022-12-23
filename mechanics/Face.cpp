@@ -5,7 +5,7 @@
 #include "Face.h"
 #include "../base/sound/Sound.h"
 #include "../types/exceptions/exception/Exception.h"
-#include "../types/exceptions/methodNotImplemented/MethodNotImplementedException.h"
+#include "../controllers/inputManager/InputManager.h"
 
 Face::Face(GameObject &associated) : Component(associated) {
     hitpoints = 30;
@@ -27,7 +27,13 @@ bool Face::Is(std::string type) {
 }
 
 void Face::Update(float dt) {
-    // do nothing
+    InputManager &inputManager = InputManager::GetInstance();
+
+    if (inputManager.MousePress(LEFT_MOUSE_BUTTON)) {
+        if (associated.box.Contains(inputManager.GetMouseX(), inputManager.GetMouseY())) {
+            Damage(std::rand() % 10 + 10);
+        }
+    }
 }
 
 void Face::Render() {

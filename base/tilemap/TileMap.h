@@ -7,7 +7,7 @@
 
 
 #include <vector>
-#include "tileset/TileSet.h"
+#include "../tileset/TileSet.h"
 
 using namespace std;
 

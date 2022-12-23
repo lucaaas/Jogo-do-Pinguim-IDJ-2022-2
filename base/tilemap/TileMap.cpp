@@ -4,8 +4,8 @@
 
 #include <fstream>
 #include "TileMap.h"
-#include "../helpers/asset/AssetHelper.h"
-#include "../helpers/string/StringHelper.h"
+#include "../../helpers/asset/AssetHelper.h"
+#include "../../helpers/string/StringHelper.h"
 
 TileMap::TileMap(GameObject &associated, string file, TileSet *tileSet) : Component(associated), tileSet(tileSet) {
     Load(file);

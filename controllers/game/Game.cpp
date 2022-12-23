@@ -8,7 +8,6 @@
 #include "SDL2/SDL_mixer.h"
 
 #include "Game.h"
-#include "../../types/exceptions/exception/Exception.h"
 #include "../../base/resources/Resources.h"
 
 Game *Game::instance = nullptr;
@@ -56,6 +55,10 @@ void Game::Run() {
     while (!state->QuitRequested()) {
         try {
             SDL_RenderClear(renderer);
+
+            InputManager &inputManager = InputManager::GetInstance();
+            inputManager.Update();
+
             state->Update(0.0);
             state->Render();
 

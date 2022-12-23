@@ -8,6 +8,8 @@
 #include "SDL2/SDL.h"
 #include "../state/State.h"
 
+class State;
+
 class Game {
 private:
     static Game *instance;
